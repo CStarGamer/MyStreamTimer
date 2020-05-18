@@ -28,6 +28,7 @@ namespace MyStreamTimer.Shared.ViewModel
         public ICommand CopyFilePathCommand { get; }
         public ICommand ResetCommand { get; }
         public ICommand AddMinuteCommand { get; }
+        public ICommand ResetOutputCommand { get; }
 
         float bootMins = -1;
 
@@ -54,6 +55,7 @@ namespace MyStreamTimer.Shared.ViewModel
             CopyFilePathCommand = new Command(ExecuteCopyFilePathCommand);
             ResetCommand = new Command(ExecuteResetCommand);
             AddMinuteCommand = new Command(ExecuteAddMinuteCommand);
+            ResetOutputCommand = new Command(ExecuteResetOutputCommand);
             timer = new Timer(250);
             timer.Elapsed += TimerElapsed;
             timer.AutoReset = true;
@@ -252,6 +254,17 @@ namespace MyStreamTimer.Shared.ViewModel
                 CountdownOutput = string.Format(currentOutput, elapsedTime);
             }
 
+            WriteTimeToDisk();
+        }
+
+        void ExecuteResetOutputCommand()
+        {
+            if (IsBusy)
+            {
+                ExecuteStartStopTimerCommand();
+            }
+
+            CountdownOutput = "";
             WriteTimeToDisk();
         }
 

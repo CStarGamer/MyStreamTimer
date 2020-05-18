@@ -60,7 +60,7 @@ namespace MyStreamTimer.WPF
             e.Handled = true;
         }
 
-        private void LabelCommandsMins_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        void LabelCommandsMins_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             
             var clipboard = ServiceContainer.Resolve<IClipboard>();
@@ -69,6 +69,12 @@ namespace MyStreamTimer.WPF
 
             var text = ((Label)sender).Content as string;
             clipboard.CopyToClipboard(text);
+        }
+
+        void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var model = TabItemDown.DataContext as TimerViewModel;
+            model.ResetOutputCommand.Execute(null);
         }
     }
 }

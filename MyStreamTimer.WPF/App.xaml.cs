@@ -29,10 +29,10 @@ namespace MyStreamTimer.WPF
             if (!createdNew)
             {
                 //app is already running! Exiting the application  
-                Application.Current.Shutdown();
+                Current.Shutdown();
             }
 
-            MyStreamTimer.WPF.MainWindow.StartArgs = e;
+            WPF.MainWindow.StartArgs = e;
             base.OnStartup(e);
             ServiceContainer.Register<IClipboard>(() => new ClipboardImplementation());
 

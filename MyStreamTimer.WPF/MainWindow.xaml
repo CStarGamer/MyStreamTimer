@@ -12,10 +12,11 @@
     Width="540"
     Height="400"
     ResizeMode="NoResize"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Closing="MetroWindow_Closing">
     <mah:MetroWindow.Resources>
         <BooleanToVisibilityConverter x:Key="VisibilityConverter" />
     </mah:MetroWindow.Resources>
+    
     <mah:MetroAnimatedSingleRowTabControl x:Name="MainTabs">
         <mah:MetroTabItem x:Name="TabItemDown" Header="Down">
             <Grid Margin="25">
